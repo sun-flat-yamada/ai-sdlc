@@ -12,31 +12,52 @@ class QAAgent:
     MEISTER_PROFILES = {
         MeisterType.THREAT_DEFENSE: {
             "name": "Threat Defense Meister",
-            "focus": "セキュリティ脆弱性、不確実性、外部依存リスク、フォールバック計画、シークレット漏洩防止"
+            "role": "脅威やリスク対策のMeister",
+            "responsibility": "脆弱性・不確実性の脅威が残存しておらず、認証・暗号化、シークレット漏洩の徹底排除に責任を持つ",
+            "monitoring_guidance": "多角的なリスク対策視点で監視し、改善を導く",
+            "focus": "脆弱性・不確実性の脅威排除、認証・暗号化、シークレット漏洩の徹底防止、多角的なリスク対策視点の監視・改善"
         },
         MeisterType.REQUIREMENT_FULFILLMENT: {
             "name": "Requirement Fulfillment Meister",
-            "focus": "要求仕様の網羅性、エッジケース考慮、前提条件の明記、暗黙の前提の排除"
+            "role": "ビジネス要求・ユーザー要求の仕様定義Meister",
+            "responsibility": "要求の仕様化が十分行われていることに責任を持つ",
+            "monitoring_guidance": "ビジネス要求・ユーザー要求の完全充足、境界値・エッジケース網羅がされていること、または合理的に推測できることを監視し、改善を導く",
+            "focus": "ビジネス要求・ユーザー要求の完全充足、境界値・エッジケース網羅、仕様定義の完全性、暗黙の前提の排除"
         },
         MeisterType.PRAGMATIC_OPERATIONS: {
             "name": "Pragmatic Operations Meister",
-            "focus": "実運用可能性、監視容易性、ランブックの具体性、運用者負荷、曖昧な運用の即NG判定"
+            "role": "リアルな現場運用のMeister",
+            "responsibility": "本番実運用の現実性、可観測性（ログ・監視・アラート）、ランブック具体性に責任を持つ",
+            "monitoring_guidance": "本当に運用できるかを最重視し、具体化されていない曖昧な領域や箇所が残っていないかを監視し、改善を導く",
+            "focus": "本番実運用の現実性、可観測性（ログ・監視・アラート）、ランブック具体性、曖昧な運用の徹底排除"
         },
         MeisterType.QUALITY_ASSURANCE: {
             "name": "Quality Assurance Meister",
-            "focus": "テスト可能性、受入基準（Given-When-Then）の明確さ、品質メトリクス、自動テスト適合性"
+            "role": "品質保証のMeister",
+            "responsibility": "受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクスに責任を持つ",
+            "monitoring_guidance": "検証可能か、受入品質基準が十分に定義されているかといったことを監視し、改善を導く",
+            "focus": "受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクス、検証可能性の監視・改善"
         },
         MeisterType.GOVERNANCE_COMPLIANCE: {
             "name": "Governance Compliance Meister",
-            "focus": "全社開発標準規約、ドキュメント様式、意思決定理由（ADR）の透明性と説明責任"
+            "role": "規律を統制し、説明責任をはたすMeister",
+            "responsibility": "全社開発標準・規約準拠、ADR意思決定経緯の透明性と説明に責任を持つ",
+            "monitoring_guidance": "意思決定材料の網羅性や説明可能になっていることを監視し、改善を導く",
+            "focus": "全社開発標準・規約準拠、ADR意思決定経緯の透明性と説明責任、意思決定材料の網羅性の監視・改善"
         },
         MeisterType.VALUE_PROPOSITION: {
             "name": "Value Proposition Meister",
-            "focus": "ビジネス価値、市場競争力、真の顧客要求充足、ROI、過剰設計/不足設計の排除"
+            "role": "ビジネス価値提供のMeister",
+            "responsibility": "真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除といったことに責任を持つ",
+            "monitoring_guidance": "本当に市場で「刺さる提案」か「勝てるか」を監視し、改善を導く",
+            "focus": "真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除、市場適合性の監視・改善"
         },
         MeisterType.ISOLATION_ARCHITECTURE: {
             "name": "Isolation Architecture Meister",
-            "focus": "拡張性、保守性、コンポーザブル部品化、疎結合性、既存コンポーネントカタログの再利用"
+            "role": "疎結合なClean ArchitectureのMeister",
+            "responsibility": "疎結合性、コンポーザブル部品化、全社コンポーネントの再利用徹底といった視点でソフトウエア構造に責任を持つ",
+            "monitoring_guidance": "生成AIによる繰り返し変更においても劣化を最小に抑えられるソフトウエア構造となっているかを監視し、改善を導く",
+            "focus": "疎結合性、コンポーザブル部品化、全社コンポーネント再利用徹底、生成AIの反復変更に耐えうる劣化最小化構造"
         }
     }
 

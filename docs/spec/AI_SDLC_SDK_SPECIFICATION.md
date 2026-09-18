@@ -167,13 +167,13 @@ flowchart TB
 #### ② QA Agent（マイスターズ審議会・マイスターズレビュー (The Council of Meisters)）
 - **役割**: ドキュメント成果物をマルチペルソナで評価し、合格基準を満たさない限り次工程への移行を完全ブロック。
 - **マイスターズ審議会のマイスター定義 (Standard Meisters)**:
-  1. **Threat Defense Meister**: 脅威防壁・セキュリティ。脆弱性、認証・暗号化、シークレット漏洩の徹底排除。
-  2. **Requirement Fulfillment Meister**: 要件充足・完全性。ビジネス要求・ユーザー要求の完全充足、エッジケース網羅。
-  3. **Pragmatic Operations Meister**: 実務運用・実行可能性。本番実運用の現実性、可観測性（ログ・監視）、ランブック具体性。
-  4. **Quality Assurance Meister**: 品質保証・受入基準。受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクス。
-  5. **Governance Compliance Meister**: 規律統制・説明責任。全社開発標準・規約準拠、ADR意思決定経緯の透明性。
-  6. **Value Proposition Meister**: 提供価値・競争優位。真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除。
-  7. **Isolation Architecture Meister**: 隔離構造・疎結合アーキテクチャ。疎結合性、コンポーザブル部品化、全社コンポーネント再利用徹底。
+  1. **Threat Defense Meister**: 脅威・リスク対策。脆弱性・不確実性の脅威残存ゼロ、認証・暗号化、シークレット漏洩の徹底排除に責任を持ち、多角的なリスク対策視点で監視・改善。
+  2. **Requirement Fulfillment Meister**: 要求仕様定義。要求の仕様化責任を担い、ビジネス要求・ユーザー要求の完全充足、境界値・エッジケース網羅（合理的推測）を監視・改善。
+  3. **Pragmatic Operations Meister**: リアルな現場運用。本番実運用の現実性、可観測性（ログ・監視・アラート）、ランブック具体性に責任を持ち、曖昧な箇所の残存を監視・改善。
+  4. **Quality Assurance Meister**: 品質保証。受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクスに責任を持ち、検証可能性を監視・改善。
+  5. **Governance Compliance Meister**: 規律統制・説明責任。全社開発標準・規約準拠、ADR意思決定経緯の透明性と説明に責任を持ち、意思決定材料の網羅性を監視・改善。
+  6. **Value Proposition Meister**: ビジネス価値提供。真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除に責任を持ち、市場で勝てる提案かを監視・改善。
+  7. **Isolation Architecture Meister**: 疎結合なClean Architecture。疎結合性、コンポーザブル部品化、知財再利用徹底に責任を持ち、生成AIによる反復変更での劣化最小化を監視・改善。
 - **合否判定アルゴリズム**:
   - 各マイスターが100点満点で採点。加重平均スコア ≧ 80点 かつ 全マイスター個別スコア ≧ 70点 で「PASS」。
   - 「FAIL」時は、各マイスターから具体的な修正指示（指摘箇所、修正文案、理由）を提示し、Procedural Agentが修正セッションを開始。

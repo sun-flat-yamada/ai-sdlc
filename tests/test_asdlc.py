@@ -149,6 +149,27 @@ class TestASDLCSDK(unittest.TestCase):
         self.assertEqual(res_cs.exit_code, 0)
         self.assertIn("CSHARP", res_cs.output.upper())
 
+    def test_08_meisters_clarified_roles_and_responsibilities(self):
+        qa = self.orch.qa
+        self.assertEqual(len(qa.MEISTER_PROFILES), 7)
+        for meister_type, profile in qa.MEISTER_PROFILES.items():
+            self.assertIn("name", profile)
+            self.assertIn("role", profile)
+            self.assertIn("responsibility", profile)
+            self.assertIn("monitoring_guidance", profile)
+            self.assertIn("focus", profile)
+            self.assertIn("Meister", profile["name"])
+            self.assertTrue(len(profile["role"]) > 0)
+            self.assertTrue(len(profile["responsibility"]) > 0)
+            self.assertTrue(len(profile["monitoring_guidance"]) > 0)
+
+        # Specifically check Isolation Architecture Meister's GenAI resilience focus
+        from asdlc.models import MeisterType
+        iso_profile = qa.MEISTER_PROFILES[MeisterType.ISOLATION_ARCHITECTURE]
+        self.assertIn("Clean Architecture", iso_profile["role"])
+        self.assertIn("生成AI", iso_profile["monitoring_guidance"])
+        self.assertIn("劣化", iso_profile["monitoring_guidance"])
+
 if __name__ == "__main__":
     unittest.main()
 

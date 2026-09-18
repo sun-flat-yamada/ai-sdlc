@@ -51,7 +51,7 @@ flowchart TB
     subgraph SDLC["ASDLC Lifecycle Engine"]
         PA -->|Draft Specifications| Human["Human Reviewer (Decision Maker)"]
         Human -->|Proof of Review| QA["② QA Agent (The Meisters Council)<br>(docs/charter/MEISTERS_CHARTER.md)"]
-        QA -->|Score >= 80 & Gate PASS| CA["③ Coding Agent<br>(3-Layer Context Synthesis)"]
+        QA -->|"Score >= 80 & Gate PASS"| CA["③ Coding Agent<br>(3-Layer Context Synthesis)"]
     end
 
     KB["Agent Knowledge Base (MCP Server)"] <-->|Dynamic Rules & Catalog| SDLC
@@ -71,15 +71,15 @@ flowchart TB
 
 The core QA Gate operates under the official charter: [MEISTERS_CHARTER.md](docs/charter/MEISTERS_CHARTER.md). The Meisters Council functions as an extensible body, featuring 7 standard defense pillars:
 
-| Meister Name | Mission & Review Focus | Min Score |
-| :--- | :--- | :--- |
-| **1. Threat Defense Meister** | Threat defense, security bounds, encryption, and secret leak prevention | $\ge 70$ pts |
-| **2. Requirement Fulfillment Meister** | Full requirement fulfillment, edge cases, and explicit scope | $\ge 70$ pts |
-| **3. Pragmatic Operations Meister** | Real-world operational feasibility, observability, and runbook readiness | $\ge 70$ pts |
-| **4. Quality Assurance Meister** | Acceptance criteria (Given-When-Then), verifiable testability | $\ge 70$ pts |
-| **5. Governance Compliance Meister** | Enterprise governance, ADR rationale transparency, and auditability | $\ge 70$ pts |
-| **6. Value Proposition Meister** | True customer value, ROI, competitive edge, anti-overengineering | $\ge 70$ pts |
-| **7. Isolation Architecture Meister** | Loose coupling, modular composability, and component reuse | $\ge 70$ pts |
+| Meister Name | Role & Core Responsibility | Monitoring & Remediation Focus | Min Score |
+| :--- | :--- | :--- | :--- |
+| **1. Threat Defense Meister** | Threat & risk defense; zero residual vulnerability/uncertainty, zero secrets leak, robust auth & encryption | Multi-angle risk monitoring and remediation guidance | $\ge 70$ pts |
+| **2. Requirement Fulfillment Meister** | Requirement specification; full business/user requirement coverage, boundary & edge cases | Verifying complete coverage and deducible specifications | $\ge 70$ pts |
+| **3. Pragmatic Operations Meister** | Real-world operations; production feasibility, observability (logs/metrics/alerts), runbook specificity | Prioritizing operability and eliminating ambiguous procedures | $\ge 70$ pts |
+| **4. Quality Assurance Meister** | Quality assurance; Given-When-Then acceptance criteria, objective testability, quality metrics | Verifying testability and adequacy of acceptance quality bounds | $\ge 70$ pts |
+| **5. Governance Compliance Meister** | Discipline & accountability; enterprise standards compliance, ADR transparency & rationale | Ensuring comprehensive decision rationale and explainability | $\ge 70$ pts |
+| **6. Value Proposition Meister** | Business value delivery; customer value creation, ROI, competitive advantage, anti-overengineering | Monitoring market viability ("compelling proposal") & business wins | $\ge 70$ pts |
+| **7. Isolation Architecture Meister** | Loose-coupled Clean Architecture; composability, enterprise component reuse, software structure | Ensuring minimal software degradation under repeated Generative AI edits | $\ge 70$ pts |
 
 > **Gate Criteria**: Weighted average score $\ge 80.0$ AND every meister score $\ge 70.0$ for `PASS`.
 

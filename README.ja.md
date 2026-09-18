@@ -50,8 +50,8 @@ flowchart TB
     
     subgraph SDLC["ASDLC Lifecycle Engine"]
         PA -->|ドキュメント草案生成| Human["人間 (レビュー・意思決定)"]
-        Human -->|レビュー証跡 (Proof of Review)| QA["② QA Agent (マイスターズ審議会)<br>(docs/charter/MEISTERS_CHARTER.md 準拠)"]
-        QA -->|Score >= 80 & Gate PASS| CA["③ Coding Agent<br>(3層コンテキスト優先コード合成)"]
+        Human -->|"レビュー証跡 (Proof of Review)"| QA["② QA Agent (マイスターズ審議会)<br>(docs/charter/MEISTERS_CHARTER.md 準拠)"]
+        QA -->|"Score >= 80 & Gate PASS"| CA["③ Coding Agent<br>(3層コンテキスト優先コード合成)"]
     end
 
     KB["Agent Knowledge Base (MCP Server)"] <-->|知財・規約の動的配信| SDLC
@@ -68,13 +68,13 @@ flowchart TB
 
 ### 3. QA Agent（マイスターズ審議会 - The Meisters Council）
 - **[マイスターズレビュー憲章 (docs/charter/MEISTERS_CHARTER.md)](docs/charter/MEISTERS_CHARTER.md) 準拠**:
-  1. **Threat Defense Meister**: 脅威防壁・セキュリティ
-  2. **Requirement Fulfillment Meister**: 要件充足・網羅性
-  3. **Pragmatic Operations Meister**: 実務運用・実行可能性
-  4. **Quality Assurance Meister**: 品質保証・受入基準
-  5. **Governance Compliance Meister**: 規律統制・説明責任
-  6. **Value Proposition Meister**: 提供価値・競争優位
-  7. **Isolation Architecture Meister**: 隔離構造・疎結合設計
+  1. **Threat Defense Meister**: 脅威・リスク対策（脆弱性・不確実性の脅威排除、認証・暗号化、シークレット漏洩の徹底排除）
+  2. **Requirement Fulfillment Meister**: 要求仕様定義（要求の仕様化責任、完全充足、境界値・エッジケース網羅）
+  3. **Pragmatic Operations Meister**: リアルな現場運用（本番運用の現実性、可観測性、ランブック具体化・曖昧領域排除）
+  4. **Quality Assurance Meister**: 品質保証（受入基準 Given-When-Then、客観的テスト可能性、品質メトリクス）
+  5. **Governance Compliance Meister**: 規律統制・説明責任（全社開発標準・規約準拠、ADR意思決定経緯の透明性）
+  6. **Value Proposition Meister**: ビジネス価値提供（真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計排除）
+  7. **Isolation Architecture Meister**: Clean Architecture（疎結合性、コンポーザブル部品化、生成AI反復変更での劣化最小化）
 - **可変性・拡張性**: 将来の要件に応じてマイスターを追加・再構成可能なオープン審議会設計。
 
 ### 4. Coding Agent（意識させない標準化 & コンポーザブル知財再利用）
@@ -89,15 +89,15 @@ flowchart TB
 
 本SDKの中核となる品質ゲートエンジンは、公式憲章 [MEISTERS_CHARTER.md](docs/charter/MEISTERS_CHARTER.md) に基づいて自律動作します。員数に依存しないオープン審議会として、現在以下の7名が標準配備されています。
 
-| マイスター名称 | 根源的使命と審査の焦点 | 合格水準 |
-| :--- | :--- | :--- |
-| **1. Threat Defense Meister** | 脆弱性・不確実性の脅威防壁、認証・暗号化、シークレット漏洩の徹底排除 | 個別 $\ge 70$ 点 |
-| **2. Requirement Fulfillment Meister** | ビジネス要求・ユーザー要求の完全充足、境界値・エッジケース網羅 | 個別 $\ge 70$ 点 |
-| **3. Pragmatic Operations Meister** | 本番実運用の現実性、可観測性（ログ・監視・アラート）、ランブック具体性 | 個別 $\ge 70$ 点 |
-| **4. Quality Assurance Meister** | 受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクス | 個別 $\ge 70$ 点 |
-| **5. Governance Compliance Meister** | 全社開発標準・規約準拠、ADR意思決定経緯の透明性と説明責任 | 個別 $\ge 70$ 点 |
-| **6. Value Proposition Meister** | 真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除 | 個別 $\ge 70$ 点 |
-| **7. Isolation Architecture Meister** | 疎結合性、コンポーザブル部品化、全社コンポーネントの再利用徹底 | 個別 $\ge 70$ 点 |
+| マイスター名称 | 役割と責任範囲 | 監視と改善の眼差し | 合格水準 |
+| :--- | :--- | :--- | :--- |
+| **1. Threat Defense Meister** | 脅威やリスク対策。脆弱性・不確実性の脅威残存ゼロ、認証・暗号化、シークレット漏洩の徹底排除に責任を持つ。 | 多角的なリスク対策視点で監視し、改善を導く。 | 個別 $\ge 70$ 点 |
+| **2. Requirement Fulfillment Meister** | ビジネス要求・ユーザー要求の仕様定義。要求の仕様化が十分行われていることに責任を持つ。 | ビジネス・ユーザー要求の完全充足、境界値・エッジケース網羅（合理的推測）を監視し改善を導く。 | 個別 $\ge 70$ 点 |
+| **3. Pragmatic Operations Meister** | リアルな現場運用。本番実運用の現実性、可観測性（ログ・監視・アラート）、ランブック具体性に責任を持つ。 | 本当に運用できるかを最重視し、具体化されていない曖昧な領域や箇所が残っていないかを監視・改善。 | 個別 $\ge 70$ 点 |
+| **4. Quality Assurance Meister** | 品質保証。受入基準（Given-When-Then）、客観的テスト可能性、品質メトリクスに責任を持つ。 | 検証可能か、受入品質基準が十分に定義されているかを監視し、改善を導く。 | 個別 $\ge 70$ 点 |
+| **5. Governance Compliance Meister** | 規律統制と説明責任。全社開発標準・規約準拠、ADR意思決定経緯の透明性と説明に責任を持つ。 | 意思決定材料の網羅性や説明可能になっているかを監視し、改善を導く。 | 個別 $\ge 70$ 点 |
+| **6. Value Proposition Meister** | ビジネス価値提供。真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計の排除に責任を持つ。 | 本当に市場で「刺さる提案」か「勝てるか」を監視し、改善を導く。 | 個別 $\ge 70$ 点 |
+| **7. Isolation Architecture Meister** | 疎結合なClean Architecture。疎結合性、コンポーザブル部品化、全社コンポーネントの再利用徹底に責任を持つ。 | 生成AIによる繰り返し変更においても劣化を最小に抑えられるソフトウエア構造かを監視・改善。 | 個別 $\ge 70$ 点 |
 
 > **品質ゲート判定基準**:  
 > 全マイスターの加重平均スコア $\ge 80.0$ 点 かつ 全マイスター個別スコア $\ge 70.0$ 点で `PASS`。未達時は具体的改善指示を発行しフェーズ昇格をロック。
