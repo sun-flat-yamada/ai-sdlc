@@ -61,13 +61,13 @@ flowchart TB
 ### 3. QA Agent (マイスターズ審議会 - The Meisters Council)
 公式憲章 [MEISTERS_CHARTER.md](../charter/MEISTERS_CHARTER.md) に基づき、成果物を多角的視点から厳格に審査します。
 - **7大防壁マイスター**:
-  1. `Threat Defense Meister`: 脅威防壁・セキュリティ
-  2. `Requirement Fulfillment Meister`: 要件充足・完全性
-  3. `Pragmatic Operations Meister`: 実務運用・実行可能性
-  4. `Quality Assurance Meister`: 品質保証・Given-When-Then受入基準
-  5. `Governance Compliance Meister`: 規律統制・ADR説明責任
-  6. `Value Proposition Meister`: 提供価値・過剰設計の排除
-  7. `Isolation Architecture Meister`: 隔離構造・コンポーザブル疎結合
+  1. `Threat Defense Meister`: 脅威・リスク対策（脆弱性・不確実性の脅威排除、認証・暗号化、シークレット漏洩防止）
+  2. `Requirement Fulfillment Meister`: 要求仕様定義（要求の仕様化責任、完全充足、境界値・エッジケース網羅）
+  3. `Pragmatic Operations Meister`: 現場実運用（本番実運用の現実性、可観測性、ランブック具体化・曖昧領域排除）
+  4. `Quality Assurance Meister`: 品質保証（受入基準 Given-When-Then、客観的テスト可能性、品質メトリクス）
+  5. `Governance Compliance Meister`: 規律統制・説明責任（全社開発標準・規約準拠、ADR意思決定経緯の透明性）
+  6. `Value Proposition Meister`: ビジネス価値提供（真の顧客価値創出、ROI、市場競争優位性、過剰/不足設計排除）
+  7. `Isolation Architecture Meister`: Clean Architecture（疎結合性、コンポーザブル部品化、生成AI反復変更での劣化最小化）
 - **調停・品質ゲート通過数理モデル**:
   $$S_{total} = \frac{1}{N} \sum_{i=1}^{N} s_i \ge 80.0 \quad \land \quad S_{min} = \min_{i} (s_i) \ge 70.0$$
   1マイスターでも70点未満の場合は即時 `FAIL` となり、具体的な改善提案を含む「Remediation Backlog」が出力されます。
