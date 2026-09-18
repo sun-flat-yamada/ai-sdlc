@@ -2,6 +2,7 @@
 
 <!-- ASDLC-GOVERNANCE-INJECTION -->
 @.agents/rules/asdlc-lifecycle-rules.md
+@.agents/skills/asdlc-two-phase-governance/SKILL.md
 
 ## Commands
 - `/status`: Run `asdlc status` to view current SDLC phase and guardrail status.
@@ -12,4 +13,5 @@
 
 ## Guidelines
 - Follow The Meisters Council Charter in `docs/charter/MEISTERS_CHARTER.md`.
-- Never modify code directly without corresponding spec approval.
+- Never modify code directly without corresponding plan & human approval (`asdlc-two-phase-governance`).
+- Output changes to `.devs/changes/<change-id>/plan.md` and obtain approval before applying edits.

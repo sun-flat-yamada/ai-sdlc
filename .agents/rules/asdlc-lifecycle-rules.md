@@ -22,4 +22,5 @@ always_on: true
 - [docs/charter/MEISTERS_CHARTER.md](file:///docs/charter/MEISTERS_CHARTER.md)
 - [asdlc-issue-triage](file:///.agents/skills/asdlc-issue-triage/SKILL.md)
 - [asdlc-meisters-review](file:///.agents/skills/asdlc-meisters-review/SKILL.md)
-- [antigravity-two-phase-governance](file:///.agents/skills/antigravity-two-phase-governance/SKILL.md)
+- [antigravity-two-phase-governance (Antigravity専用)](file:///.agents/skills/antigravity-two-phase-governance/SKILL.md)
+- [asdlc-two-phase-governance (CLI・外部ツール用)](file:///.agents/skills/asdlc-two-phase-governance/SKILL.md)
