@@ -1,0 +1,138 @@
+# =================================================================
+# Dependencies & Build Artifacts
+# =================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+node_modules/
+.cache/
+
+# =================================================================
+# Virtual Environments
+# =================================================================
+.venv/
+venv/
+ENV/
+env/
+
+# =================================================================
+# Testing & Coverage
+# =================================================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# =================================================================
+# ASDLC runtime state & temporary files
+# =================================================================
+.asdlc_state.json
+.ai_sdlc_state.json
+requirements.md
+
+# =================================================================
+# Agent Aegis Harness Local Logs & Configs (Keep repository pristine)
+# =================================================================
+.aegis/
+.aegis_local/
+
+# =================================================================
+# 🔒 CRITICAL: Secrets, Credentials & Privacy Protection (OWASP / Gitleaks / proud-noether)
+# =================================================================
+# Environment files & Local Configs (NEVER commit tokens or secrets)
+.env
+.env.*
+!.env.example
+*.env
+.envrc
+
+# Private Keys, Certificates & Cryptographic Credentials
+*.pem
+*.key
+*.priv
+*.pkcs12
+*.p12
+*.pfx
+*.asc
+id_rsa
+id_rsa.pub
+id_ecdsa
+id_ecdsa.pub
+id_ed25519
+id_ed25519.pub
+*.crt
+*.cer
+*.der
+*.keystore
+*.jks
+*.token
+*.secret
+
+# Cloud Provider Credentials & API Secret Dumps
+credentials.json
+client_secret*.json
+service-account*.json
+service_account*.json
+.aws/
+.gcp/
+.azure/
+gcloud/
+*.ovpn
+
+# Developer Package & Registry Tokens
+.npmrc
+.yarnrc
+.pypirc
+.netrc
+.docker/config.json
+
+# Password Databases & Encrypted Vaults
+*.kdbx
+*.vault
+.vault-token
+secrets/
+credentials/
+secrets.json
+secrets.yml
+secrets.yaml
+
+# Kubernetes / Container Access Tokens
+kubeconfig
+kubeconfig.yaml
+admin.conf
+
+# SQLite / Database & Log Dumps
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.dump
+
+# =================================================================
+# OS & IDE
+# =================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

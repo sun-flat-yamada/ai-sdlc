@@ -1,0 +1,52 @@
+name: ASDLC Agent & Skill Quality Evaluation (ASQS)
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - ".agents/**"
+      - "asdlc/**"
+      - "tests/**"
+      - ".github/workflows/asdlc-eval.yml"
+  pull_request:
+    paths:
+      - ".agents/**"
+      - "asdlc/**"
+      - "tests/**"
+      - ".github/workflows/asdlc-eval.yml"
+
+jobs:
+  agent_skill_evaluation:
+    name: Multi-Tier Quality Evaluation & Regression Gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest
+
+      - name: Run Unit & Behavioral Test Suite
+        run: |
+          python -m pytest tests/ -v
+
+      - name: Run ASDLC ASQS Multi-Tier Evaluation
+        run: |
+          python -m asdlc.cli.main eval
+
+      - name: Export ASQS Scorecard (JSON)
+        if: always()
+        run: |
+          python -m asdlc.cli.main eval --json > asqs_report.json
+          cat asqs_report.json

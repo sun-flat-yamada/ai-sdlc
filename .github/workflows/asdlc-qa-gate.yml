@@ -1,0 +1,39 @@
+name: ASDLC QA Gate & Meisters Review
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - ".devs/**"
+      - "asdlc/**"
+      - "tests/**"
+
+jobs:
+  meisters_review:
+    name: The Meisters Council Quality Gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest
+
+      - name: Run Test Suite
+        run: |
+          python -m pytest tests/ -v
+
+      - name: Run Meisters Review on Requirements
+        run: |
+          python -m asdlc.cli.main review tests/fixtures/sample_docs/requirements.md

@@ -1,0 +1,85 @@
+name: ASDLC 4D Issue Auto-Triage & Sanitization
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install ASDLC SDK
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Run 4D Issue Triage
+        id: triage_step
+        run: |
+          # Run triage engine on issue payload
+          python -c '
+          import os, json
+          from asdlc.triage.engine import Issue4DTriageEngine
+          
+          title = """${{ github.event.issue.title }}"""
+          body = """${{ github.event.issue.body }}"""
+          
+          engine = Issue4DTriageEngine()
+          result = engine.triage(title, body)
+          
+          output = {
+              "type": result.issue_type.value,
+              "priority": result.priority.value,
+              "component": result.estimated_component,
+              "injection_detected": result.prompt_injection_detected,
+              "labels": result.suggested_labels,
+              "remediation": result.remediation_proposal
+          }
+          with open("triage_result.json", "w", encoding="utf-8") as f:
+              json.dump(output, f, ensure_ascii=False, indent=2)
+          print("Triage finished successfully.")
+          '
+
+      - name: Post Triage Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const triage = JSON.parse(fs.readFileSync('triage_result.json', 'utf8'));
+            
+            let comment = `### 🤖 ASDLC 4D Auto-Triage Result\n\n`;
+            comment += `| Dimension | Assessed Value |\n`;
+            comment += `| :--- | :--- |\n`;
+            comment += `| **Type** | \`${triage.type}\` |\n`;
+            comment += `| **Priority** | \`${triage.priority}\` |\n`;
+            comment += `| **Component** | \`${triage.component}\` |\n`;
+            comment += `| **Injection Risk** | ${triage.injection_detected ? '⚠️ **FLAGGED (Sanitized)**' : '✅ Clear'} |\n\n`;
+            comment += `**Actionable Next Steps**:\n> ${triage.remediation}\n\n`;
+            comment += `*Evaluated under ASDLC v0.2.0 Governance Engine.*`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+            
+            if (triage.labels && triage.labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: triage.labels
+              });
+            }
